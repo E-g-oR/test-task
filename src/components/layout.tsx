@@ -1,15 +1,18 @@
-import React from 'react'
-import AppHeader from './app-header';
-import Footer from './footer';
+import { FC } from "react";
+import AppHeader from "./app-header";
+import Footer from "./footer";
+import Container from "./container";
 
-const Layout = () => {
+const Layout: FC = () => {
   return (
-    <div>
-        <AppHeader/>
-        {/* outlet */}
-        <Footer/>
+    <div className={"flex flex-col h-screen gap-5"}>
+      <AppHeader />
+      <Container className="flex-1">
+        outlet
+      </Container>
+      <Footer />
     </div>
-  )
-}
+  );
+};
 
-export default Layout
+export default Layout;
