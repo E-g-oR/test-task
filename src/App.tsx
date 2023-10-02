@@ -1,12 +1,10 @@
-import Layout from './components/layout';
+import Layout from "./components/layout";
+import ThemeProvider from "./components/theme-provider";
 
-function App() {
+const App = () => (
+  <ThemeProvider>
+    <Layout />
+  </ThemeProvider>
+);
 
-  return (
-    <>
-      <Layout/>
-    </>
-  )
-}
-
-export default App
+export default App;
