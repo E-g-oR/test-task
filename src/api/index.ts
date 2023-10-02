@@ -5,7 +5,7 @@ const apiInstanse = ky.create({
   prefixUrl: "https://dummyjson.com/",
 });
 
-interface PaginatedPayload {
+export interface PaginatedPayload {
   page: number;
   limit: number;
 }

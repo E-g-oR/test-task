@@ -1,17 +1,25 @@
-import { FC } from "react";
+import { FC, useMemo, useState } from "react";
 import AppHeader from "./app-header";
 import Footer from "./footer";
 import Container from "./container";
 import { useRequest } from "@/lib/hooks/useRequest";
-import { API } from "@/api";
-import { AspectRatio } from "@radix-ui/react-aspect-ratio";
+import { API, PaginatedPayload } from "@/api";
 import ProductCard from "./product-card";
-const aaa = { limit: 10, page: 1 };
+import Pagination from "./pagination";
+
+// const showItemsOnPage = [10, 20, 30] as const
 
 const Layout: FC = () => {
-  const requestData = useRequest(API.getProducts, aaa);
-  console.log(requestData);
+  
+  // const showItems
 
+  const [currentPage, setCurrentPage] = useState(1);
+  const paginatedPayload: PaginatedPayload = useMemo(()=>({
+    limit: 10,
+    page: currentPage
+  }), [currentPage])
+
+  const requestData = useRequest(API.getProducts, paginatedPayload);
   return (
     <div className={"flex flex-col h-screen gap-5 pt-20"}>
       <AppHeader />
@@ -20,6 +28,12 @@ const Layout: FC = () => {
           <ProductCard product={product} key={product.id} />
         ))}
       </Container>
+      <Pagination
+        currentPage={currentPage}
+        onChange={setCurrentPage}
+        limit={paginatedPayload.limit}
+        total={requestData.data?.total ?? 0}
+      />
       <Footer />
     </div>
   );
