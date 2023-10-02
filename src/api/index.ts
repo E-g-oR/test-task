@@ -15,7 +15,7 @@ export const API = {
     apiInstanse("products", {
       searchParams: {
         limit: payload.limit,
-        skip: payload.page !== 1 ? payload.page * payload.limit : 0,
+        skip: payload.page !== 1 ? (payload.page -1) * payload.limit : 0,
       },
     }).json<PaginatedProducts>(),
 };

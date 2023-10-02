@@ -1,8 +1,7 @@
-import { FC, useMemo, useState } from "react";
+import { FC, useMemo } from "react";
 import { makeBy } from "fp-ts/ReadonlyArray";
 import { Button } from "./ui/button";
 import {
-  ArrowLeftIcon,
   ChevronLeftIcon,
   ChevronRightIcon,
   DoubleArrowLeftIcon,
@@ -39,7 +38,7 @@ const Pagination: FC<Props> = ({ limit, total, currentPage, onChange }) => {
         variant={"outline"}
         size={"icon"}
         disabled={currentPage === 1}
-        onClick={() => onChange((page) => page - 1)}
+        onClick={() => onChange(currentPage - 1)}
       >
         <ChevronLeftIcon />
       </Button>
@@ -53,12 +52,11 @@ const Pagination: FC<Props> = ({ limit, total, currentPage, onChange }) => {
           {page}
         </Button>
       ))}
-
       <Button
         variant={"outline"}
         size={"icon"}
         disabled={disabledRight}
-        onClick={() => onChange((page) => page + 1)}
+        onClick={() => onChange(currentPage + 1)}
       >
         <ChevronRightIcon />
       </Button>
