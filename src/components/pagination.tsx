@@ -25,7 +25,7 @@ const Pagination: FC<Props> = ({ limit, total, currentPage, onChange }) => {
     [currentPage, pages]
   );
   return (
-    <div className="flex gap-2 flex-wrap">
+    <div className="flex gap-2 flex-wrap mx-auto">
       <Button
         variant={"outline"}
         size={"icon"}

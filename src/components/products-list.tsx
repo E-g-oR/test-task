@@ -13,11 +13,14 @@ import {
   SelectTrigger,
   SelectValue,
 } from "./ui/select";
+import { useTranslation } from "@/lib/hooks/useTranslation";
 
 const showItemsOnPage = [10, 20, 30] as const;
 
 const ProductsList = () => {
-  const [limit, setLimit] = useState<(typeof showItemsOnPage)[number]>(
+  
+    const t = useTranslation()
+    const [limit, setLimit] = useState<(typeof showItemsOnPage)[number]>(
     showItemsOnPage[0]
   );
 
@@ -36,14 +39,14 @@ const ProductsList = () => {
     <section>
       <Container className="flex flex-col gap-5">
         <div>
-          <p className="mb-2">Select limit for page</p>
+          <p className="mb-2">{t.common.limitTitles}</p>
           <Select value={limit} onValueChange={setLimit}>
             <SelectTrigger className="w-[180px]">
               <SelectValue placeholder="Select a fruit" />
             </SelectTrigger>
             <SelectContent>
               <SelectGroup>
-                <SelectLabel>Limit</SelectLabel>
+                <SelectLabel>{t.common.limit}</SelectLabel>
                 {showItemsOnPage.map((value) => (
                   <SelectItem value={value} key={value}>
                     {value}

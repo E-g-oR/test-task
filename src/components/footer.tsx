@@ -1,15 +1,14 @@
 import { FC } from "react";
 import Container from "./container";
+import { useTranslation } from "@/lib/hooks/useTranslation";
 
 const Footer: FC = () => {
+  const t = useTranslation();
   return (
     <footer className={"border-t py-5"}>
       <Container>
-        Logo
-        <p>
-          The project of the test task, for fetching products and displaying
-          them.
-        </p>
+        {t.common.logo}
+        <p>{t.footer.description}</p>
       </Container>
     </footer>
   );
